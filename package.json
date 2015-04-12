@@ -1,0 +1,28 @@
+{
+  "name": "customize",
+  "version": "1.0.0",
+  "description": "Web app for custom Basscss builds",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test",
+    "data": "node data",
+    "js": "browserify entry.js -o bundle.js",
+    "serve": "http-server",
+    "start": "npm run data && npm run js && npm run serve"
+  },
+  "author": "Brent Jackson",
+  "license": "MIT",
+  "devDependencies": {
+    "basscss": "^6.0.0",
+    "browserify": "^9.0.8",
+    "custom-css": "^1.0.1",
+    "get-module-info": "^1.1.0",
+    "http-server": "^0.8.0",
+    "json-loader": "^0.5.1",
+    "jsx-loader": "^0.13.1",
+    "lodash": "^3.6.0",
+    "mocha": "^2.2.4",
+    "postcss": "^4.1.4",
+    "react": "^0.13.1"
+  }
+}
