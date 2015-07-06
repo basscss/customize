@@ -1,5 +1,7 @@
-var React = require('react');
-var data = require('./data.json');
-var CustomCss = React.createFactory(require('custom-css'));
 
-React.render(CustomCss(data), document.querySelector('#app'));
+import React from 'react'
+import data from './data'
+import App from './components/App.jsx'
+
+React.render(<App {...data} />, document.querySelector('#app'))
+

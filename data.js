@@ -1,17 +1,11 @@
 
-var fs = require('fs');
-var path = require('path');
-var bassdata = require('basscss/package.json').basscss;
-var generateData = require('custom-css/tasks/data');
+import pkg from 'basscss/package.json'
+import modules from './data.json'
 
-var data;
-var options = {};
-
-options.modules = bassdata.modules;
-options.variables = bassdata.variables;
-options.dirname = path.join(__dirname, './node_modules/basscss');
-
-data = generateData(options);
-
-fs.writeFileSync(path.join(__dirname, './data.json'), JSON.stringify(data));
+export default {
+  title: 'Customize',
+  path: '/customize',
+  version: pkg.version,
+  modules: modules,
+}
 
