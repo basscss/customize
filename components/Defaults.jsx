@@ -1,23 +1,28 @@
 
 import React from 'react'
+import { Input, Row, Col } from 'rebass'
 
 class Defaults extends React.Component {
 
   render () {
     let props = this.props
-    let defaults = props.modules.defaults
+    let defaults = props.defaults
     return (
       <div>
         <h3>Defaults</h3>
-        <ul className='list-reset'>
+        <Row>
           {defaults.map(function(def, i) {
             return (
-              <li key={i}>
-                {def.key} {def.value}
-              </li>
+              <Col key={i} xs={6} sm={12} md={6}>
+                <Input
+                  name={def.key}
+                  label={def.key}
+                  value={def.value}
+                  onChange={props.onChange} />
+              </Col>
             )
           })}
-        </ul>
+        </Row>
       </div>
     )
   }
