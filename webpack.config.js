@@ -10,7 +10,8 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /(\.js$|\.jsx?$)/, loader: 'babel-loader' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.jsx$/, loader: 'babel-loader' },
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.css$/, loader: 'style-loader!css-loader!cssnext-loader' }
     ]
@@ -18,6 +19,10 @@ module.exports = {
 
   cssnext: {
     compress: true
+  },
+
+  node: {
+    fs: 'empty'
   }
 
 }

@@ -1,10 +1,9 @@
 
 import React from 'react'
-import { find, findIndex } from 'lodash'
+import { findIndex } from 'lodash'
 import css from 'basscss.github.io/css/base.css'
-import Container from 'babel-loader!basscss.github.io/components/Container.jsx'
-import Header from 'babel-loader!basscss.github.io/components/PageHeader.jsx'
-import Footer from 'babel-loader!basscss.github.io/components/Footer.jsx'
+import Header from 'basscss.github.io/components/PageHeader.jsx'
+import Footer from 'basscss.github.io/components/Footer.jsx'
 import { CarbonAd } from 'blk'
 import { Row, Col } from 'rebass'
 import Modules from './Modules.jsx'
@@ -16,6 +15,8 @@ class App extends React.Component {
   constructor () {
     super ()
     this.selectModule = this.selectModule.bind(this)
+    this.selectAll = this.selectAll.bind(this)
+    this.selectNone = this.selectNone.bind(this)
     this.handlePropertyChange = this.handlePropertyChange.bind(this)
     this.state = {
       defaults: [],
@@ -25,7 +26,7 @@ class App extends React.Component {
 
   selectModule (e) {
     let active = this.state.activeModules
-    let modules = this.props.modules.modules
+    let modules = this.props.modules
     let index = findIndex(modules, { name: e.target.name })
     if (index > -1) {
       let activeIndex = active.indexOf(index)
@@ -41,6 +42,19 @@ class App extends React.Component {
     }
   }
 
+  selectAll (e) {
+    let active = []
+    let modules = this.props.modules
+    modules.forEach(function(mod, i) {
+      active.push(i)
+    })
+    this.setState({ activeModules: active })
+  }
+
+  selectNone (e) {
+    this.setState({ activeModules: [] })
+  }
+
   handlePropertyChange (e) {
     let defaults = this.state.defaults
     let index = findIndex(defaults, { key: e.target.name })
@@ -51,7 +65,7 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    this.setState({ defaults: this.props.modules.defaults })
+    this.setState({ defaults: this.props.defaults })
   }
 
   render () {
@@ -62,16 +76,19 @@ class App extends React.Component {
         <Header {...props}
           meta={<CarbonAd />} />
         <Row>
-          <Col sm={6} md={3}>
+          <Col sm={6} md={4}>
             <Modules {...props}
               {...state}
-              onSelect={this.selectModule} />
+              onSelect={this.selectModule}
+              selectAll={this.selectAll}
+              selectNone={this.selectNone} />
           </Col>
-          <Col sm={6} md={5}>
+          <Col sm={6} md={4}>
             <Defaults {...props}
               {...state}
               onChange={this.handlePropertyChange} />
           </Col>
+          <div className='clearfix md-hide' />
           <Col md={4}>
             <Css {...props} {...state} />
           </Col>

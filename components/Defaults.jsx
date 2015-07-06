@@ -10,6 +10,9 @@ class Defaults extends React.Component {
     return (
       <div>
         <h3>Defaults</h3>
+        <p className='h5'>
+          Note: custom property values must be valid CSS.
+        </p>
         <Row>
           {defaults.map(function(def, i) {
             return (
