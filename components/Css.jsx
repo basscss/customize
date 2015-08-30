@@ -1,6 +1,5 @@
 
 import React from 'react'
-//import cssnext from 'cssnext'
 import postcss from 'postcss'
 import cssImport from 'postcss-import'
 import customMedia from 'postcss-custom-media'
@@ -50,6 +49,7 @@ class Css extends React.Component {
       .use(cssImport())
       .use(customMedia())
       .use(customProperties({
+        strict: false,
         variables: defaultsObj
       }))
       .use(calc())

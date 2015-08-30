@@ -18,7 +18,15 @@ module.exports = {
   },
 
   cssnext: {
-    compress: true
+    compress: true,
+    features: {
+      customProperties: {
+        strict: false
+      },
+      rem: false,
+      pseudoElements: false,
+      colorRgba: false
+    }
   },
 
   node: {
